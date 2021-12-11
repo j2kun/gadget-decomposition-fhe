@@ -9,8 +9,8 @@ base_log = 8
 base = 1 << base_log
 
 max_digit = base // 2 - 1
-max_representable = (
-    sum(max_digit << (i * base_log) for i in range(num_bits // base_log))
+max_representable = (max_digit 
+    * (base ** (num_bits // base_log) - 1) // (base - 1)
 )
 
 @given(integers(min_value=0, max_value=max_representable))
