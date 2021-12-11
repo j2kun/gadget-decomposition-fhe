@@ -20,7 +20,8 @@ def test_signed_decomposition(number):
     base = 2**base_log
     decomp = signed_decomposition(number, base_log, total_num_bits=32)
     reconstructed = sum(digit * base**i for (i, digit) in enumerate(decomp))
-    assert -base // 2 <= max(decomp) < base // 2
+    assert max(decomp) < base // 2
+    assert -base // 2 <= min(decomp)
     assert reconstructed == number
 
 @given(integers(min_value=max_representable+1))
